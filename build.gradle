@@ -1,0 +1,36 @@
+group 'com.Spring'
+version '1.0-SNAPSHOT'
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.5'
+  distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+apply plugin: 'jetty'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.slf4j:slf4j-api:1.7.7',
+            'org.springframework:spring-webmvc:4.2.4.RELEASE',
+            "org.springframework:spring-web:4.2.4.RELEASE",
+            "org.springframework:spring-aop:4.2.4.RELEASE",
+            'org.springframework:spring-context:4.2.4.RELEASE',
+            'org.springframework:spring-context-support:4.2.4.RELEASE',
+            'com.github.jknack:handlebars-springmvc:4.0.4',
+            'com.github.jknack:handlebars:4.0.4'
+    )
+    testCompile "junit:junit:4.11"
+}
+
+jettyRun{
+    contextPath = ""
+    httpPort = 8080
+}
+
+
